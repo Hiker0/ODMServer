@@ -1,0 +1,49 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.odm.odmserver"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="18" />
+	<permission android:protectionLevel="normal" android:name="com.odm.odmserver.MenuReceive"></permission>
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.odm.odmserver.hall.floatmenu.StartActivity"
+            android:label="@string/app_name" >
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+     <service 
+         android:name="com.odm.odmserver.hall.floatmenu.FloatMenuService"
+         android:exported="true">
+           <intent-filter>
+                <action android:name="android.intent.action.floatmenu_s" />
+          </intent-filter>
+       </service>
+
+        <receiver
+            android:name="com.odm.odmserver.hall.floatmenu.MenuReceiver"
+			android:permission="com.odm.odmserver.MenuReceive"
+			android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="huaqi.intent.action.HALL_SPEN_S" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+                
+        </receiver>
+
+    </application>
+
+</manifest>

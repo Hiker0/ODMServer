@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">ODMServer</string>
+    <string name="air_command">Air command</string>
+    <string name="action_memo">Action Memo</string>
+    <string name="scrap_booker">Gallery</string>
+    <string name="screen_writer">Screen Write</string>
+    <string name="s_finder">S Finder</string>
+    <string name="pen_window">Pen Window</string>
+</resources>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- zxf add animation 11/11 start -->
+
+    <com.odm.odmserver.hall.floatmenu.AirAnimationBgView
+        android:id="@+id/air_animate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <!--  -->
+
+        <com.odm.odmserver.hall.floatmenu.AirButtonGlobalMenuBgImageView
+            android:id="@+id/air_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/airbutton_global_bg" />
+
+        <ImageView
+            android:id="@+id/air_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/airbutton_global_focus"
+            android:visibility="invisible" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/air_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/airbutton_global_center"
+            android:visibility="invisible" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/air_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/airbutton_global_center_shadow"
+            android:visibility="invisible" >
+        </ImageView>
+
+        
+        <!-- zxf 11/11 end -->
+
+        <AbsoluteLayout
+            android:id="@+id/sector_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/action_memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="22dp"
+                android:layout_y="57dp"
+                android:src="@drawable/sector_spen"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/scrap_booker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="56dp"
+                android:layout_y="22dp"
+                android:src="@drawable/screen_shot"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/screen_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="104dp"
+                android:layout_y="20dp"
+                android:src="@drawable/screen_edit"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/s_finder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="144dp"
+                android:layout_y="50dp"
+                android:src="@drawable/sector_search"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/pen_window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="150dp"
+                android:layout_y="97dp"
+                android:src="@drawable/screen_region_edit"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/circle_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="62dp"
+                android:layout_x="61dp"
+                android:layout_y="70dp"
+                android:visibility="invisible" >
+
+                <TextView
+                    android:id="@+id/sector_title"
+                    android:layout_width="72dp"
+                    android:layout_height="57dp"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="@string/air_command"
+                    android:textColor="@android:color/white"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </AbsoluteLayout>
+    </com.odm.odmserver.hall.floatmenu.AirAnimationBgView>
+
+</FrameLayout>
