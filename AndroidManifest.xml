@@ -15,16 +15,18 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.odm.odmserver.hall.floatmenu.StartActivity"
+            android:name="com.odm.odmserver.hall.floatmenu.note4.StartActivity"
             android:label="@string/app_name" >
+            <!--  
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
-     <service 
-         android:name="com.odm.odmserver.hall.floatmenu.FloatMenuService"
+     	<service 
+         android:name="com.odm.odmserver.hall.floatmenu.note4.FloatMenuService"
          android:exported="true">
            <intent-filter>
                 <action android:name="android.intent.action.floatmenu_s" />
@@ -32,14 +34,17 @@
        </service>
 
         <receiver
-            android:name="com.odm.odmserver.hall.floatmenu.MenuReceiver"
+            android:name="com.odm.odmserver.hall.floatmenu.note4.MenuReceiver"
 			android:permission="com.odm.odmserver.MenuReceive"
 			android:exported="true"
             >
+        	<intent-filter>
+            		<action android:name="android.intent.action.HALL_SPEN" />
+            		<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
             <intent-filter>
-                <action android:name="huaqi.intent.action.HALL_SPEN_S" />
-
-                <category android:name="android.intent.category.default" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" /> 
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
                 
         </receiver>

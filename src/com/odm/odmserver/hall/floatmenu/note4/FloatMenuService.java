@@ -17,7 +17,7 @@
  * added hiden button,changed the position judegement method.
  */
 
-package com.odm.odmserver.hall.floatmenu;
+package com.odm.odmserver.hall.floatmenu.note4;
 
 import android.animation.ObjectAnimator;
 import android.app.SearchManager;
@@ -52,7 +52,11 @@ import com.odm.odmserver.R;
 public class FloatMenuService extends Service {
 
 	private String TAG = "FloatMenuService";
+	
 	private static final String SCREEN_SHOT = "android.intent.action.floatmenu.screenshot";
+	private static final boolean RUN_WHEN_EXIT = false;
+	private static final int ITEM_NUM = 4;
+	
 	private static WindowManager.LayoutParams mWindowParams;
 	private static WindowManager mWindowManager;
 
@@ -62,12 +66,19 @@ public class FloatMenuService extends Service {
 	final double cos83p8 = Math.cos(83.8f * 3.14f / 180.0f);
 	final double cos126 = Math.cos(126.0f * 3.14f / 180.0f);
 	final double cos168p8 = Math.cos(168.8f * 3.14f / 180.0f);;
+	
 
+	final double cos53 = Math.cos(53.0f * 3.14f / 180.0f);
+	final double cos103p8 = Math.cos(103.8f * 3.14f / 180.0f);
+	final double cos156 = Math.cos(156.0f * 3.14f / 180.0f);
+
+	
+	
 	static final long SLIDE_TIME = 300;
-	static final int CUSTOM_LOCATION_X = 300;
-	static final int CUSTOM_LOCATION_Y = 800;
+	static final int CUSTOM_LOCATION_X = 150;
+	static final int CUSTOM_LOCATION_Y = 600;
 	private final int MENU_ICON_DURATION = 120;
-	private final int MENU_ICON_INTERVAL = 50;
+	private final int MENU_ICON_INTERVAL = 50;  
 	private final int START_DELAY = 200;
 
 	protected SoundPool sound = null;
@@ -83,7 +94,7 @@ public class FloatMenuService extends Service {
 	ImageView actionMemo = null;
 	ImageView scrapBooker = null;
 	ImageView screenWrite = null;
-	ImageView sFinder = null;
+//	ImageView sFinder = null;
 	ImageView penWindow = null;
 	ImageView centerView = null;
 	View[] targetViews;
@@ -112,12 +123,11 @@ public class FloatMenuService extends Service {
 	boolean isDraging = true;
 	int curPart = 0;
 
-
 	static final int[] actionStringId = new int[] { R.string.air_command,
 			R.string.action_memo, R.string.scrap_booker,
 			R.string.screen_writer, R.string.s_finder, R.string.pen_window };
 	Handler mHandler = new Handler();
-
+               
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -129,7 +139,7 @@ public class FloatMenuService extends Service {
 		initSoundPool();
 		initExpandView();
 		initHidenView();
-
+      
 		if (isExpanded) {
 			IntentFilter intentFilter = new IntentFilter(
 					Intent.ACTION_LOCALE_CHANGED);
@@ -163,6 +173,7 @@ public class FloatMenuService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		
 		if (isExpanded) {
 			if (mWindowManager != null) {
 				mWindowManager.removeView(bgView);
@@ -174,7 +185,7 @@ public class FloatMenuService extends Service {
 			}
 
 
-		} else {
+		} else { 
 			if (mWindowManager != null) {
 				mWindowManager.removeView(hidenView);
 			}
@@ -215,18 +226,19 @@ public class FloatMenuService extends Service {
 		});
 
 		parent = (FrameLayout) LayoutInflater.from(this).inflate(
-				R.layout.float_menu, null);
+				R.layout.float_menu_note4, null);
 		contentView = (AbsoluteLayout) parent.findViewById(R.id.sector_bg);
 		contentView.setWillNotDraw(false);
 
 		actionMemo = (ImageView) contentView.findViewById(R.id.action_memo);
 		scrapBooker = (ImageView) contentView.findViewById(R.id.scrap_booker);
 		screenWrite = (ImageView) contentView.findViewById(R.id.screen_write);
-		sFinder = (ImageView) contentView.findViewById(R.id.s_finder);
+//		sFinder = (ImageView) contentView.findViewById(R.id.s_finder);
 		penWindow = (ImageView) contentView.findViewById(R.id.pen_window);
 
 		centerView = (ImageView) parent.findViewById(R.id.air_center);
-
+		centerView.setOnTouchListener(innerViewListener);
+		
 		actionLabelParent = (LinearLayout) contentView
 				.findViewById(R.id.circle_layout);
 
@@ -236,7 +248,7 @@ public class FloatMenuService extends Service {
 				.findViewById(R.id.air_animate);
 
 		targetViews = new View[] { actionMemo, scrapBooker, screenWrite,
-				sFinder, penWindow };
+		 penWindow };		
 		recordCordinates();
 
 		parent.setOnTouchListener(expandViewListener);
@@ -364,9 +376,12 @@ public class FloatMenuService extends Service {
 	}
 
 	private void addHidenView(int x, int y) {
+		if(!RUN_WHEN_EXIT){
+			this.stopSelf();
+		}
 		mWindowManager = (WindowManager) getApplicationContext()
 				.getSystemService("window");
-
+             
 		mWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindowParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindowParams.flags = 40;
@@ -380,6 +395,15 @@ public class FloatMenuService extends Service {
 		mWindowManager.addView(hidenView, mWindowParams);
 	}
 
+	private void updateExpandView(int x, int y) {
+		mWindowManager = (WindowManager) getApplicationContext()
+				.getSystemService("window");
+
+		mWindowParams.x = x - parent.getWidth() / 2;
+		mWindowParams.y = y - statusBarHeight - parent.getHeight() / 2;
+		mWindowManager.updateViewLayout(parent, mWindowParams);
+	}
+	
 	private void updateHidenView(int x, int y) {
 		mWindowManager = (WindowManager) getApplicationContext()
 				.getSystemService("window");
@@ -388,7 +412,7 @@ public class FloatMenuService extends Service {
 		mWindowParams.y = y - statusBarHeight - hidenView.getHeight() / 2;
 		mWindowManager.updateViewLayout(hidenView, mWindowParams);
 	}
-
+	
 	void playOpenSound() {
 		sound.stop(this.mStreamSoundId);
 		mStreamSoundId = sound.play(sOpenSoundId, 1.0F, 1.0F, 1, 0, 1.0F);
@@ -416,8 +440,8 @@ public class FloatMenuService extends Service {
 		if (mAirAnimationBgView != null) {
 			mAirAnimationBgView.startOpenAnimation();
 		}
-
-		for (int i = 0; i < 5; ++i) {
+		
+		for (int i = 0; i < ITEM_NUM; ++i) {
 			final View localImageView7 = targetViews[i];
 			mHandler.postDelayed(new Runnable() {
 				@Override
@@ -480,7 +504,7 @@ public class FloatMenuService extends Service {
 			localObjectAnimator7.setDuration(this.MENU_ICON_DURATION);
 			localObjectAnimator7.start();
 		}
-		for (int i = 4; i >= 0; --i) {
+		for (int i = ITEM_NUM-1; i >= 0; --i) {
 			View localImageView7 = targetViews[i];
 			float[] arrayOfFloat7 = new float[2];
 			arrayOfFloat7[0] = 1.0F;
@@ -512,9 +536,11 @@ public class FloatMenuService extends Service {
 			field = c.getField("status_bar_height");
 			x = Integer.parseInt(field.get(obj).toString());
 			statusBarHeight = getResources().getDimensionPixelSize(x);
+			
 			return statusBarHeight;
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 		return statusBarHeight;
 	}
@@ -535,6 +561,56 @@ public class FloatMenuService extends Service {
 		return null;
 	}
 
+	private Runnable innerLongClickListener = new Runnable(){
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			switchHiden();
+		}
+		
+	};
+	View.OnTouchListener innerViewListener = new View.OnTouchListener() {
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			// TODO Auto-generated method stub
+			int mRawX = (int) event.getRawX();
+			int mRawY = (int) event.getRawY();
+
+			switch (event.getAction() & MotionEvent.ACTION_MASK) {
+			case MotionEvent.ACTION_DOWN:
+				mLastX = mRawX;
+				mLastY = mRawY;
+				isDraging = false;
+				mHandler.postDelayed(innerLongClickListener, 200);
+				break;
+			case MotionEvent.ACTION_MOVE:
+				if (isDraging || Math.abs(mRawX - mLastX) > touchSlop
+						|| Math.abs(mRawY - mLastY) > touchSlop) {
+					mLastX = mRawX;
+					mLastY = mRawY;
+					isDraging = true;
+					updateExpandView(mRawX, mRawY);
+					mHandler.removeCallbacks(innerLongClickListener);
+				}
+				break;
+			case MotionEvent.ACTION_UP:
+			case MotionEvent.ACTION_CANCEL:
+				mHandler.removeCallbacks(innerLongClickListener);
+				if (!isDraging) {
+					switchHiden();
+				}
+				isDraging = false;
+				break;
+			default:
+				;
+			}
+
+			return true;
+		}
+	};
+	
 	View.OnTouchListener hideViewListener = new View.OnTouchListener() {
 
 		@Override
@@ -600,6 +676,7 @@ public class FloatMenuService extends Service {
 					actionLabel.setText(getResources().getString(
 							actionStringId[curPart]));
 					mAirAnimationBgView.playSelect(curPart);
+					mAirAnimationBgView.updateHighlightCircleBg();
 				}
 				break;
 			}
@@ -612,6 +689,7 @@ public class FloatMenuService extends Service {
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL:
 				launchActivity(curPart);
+				mAirAnimationBgView.resetHighlightCircleBg();
 				actionLabel.setText(getResources().getString(
 						actionStringId[0]));
 				break;
@@ -621,6 +699,7 @@ public class FloatMenuService extends Service {
 			return true;
 		}
 	};
+	
 
 	private int witchPartAt(float x, float y) {
 		bigRadius = parent.getWidth() / 2;
@@ -643,21 +722,19 @@ public class FloatMenuService extends Service {
 
 		if (sinP < 0) {
 			if (cosP < cos220) {
-				return 5;
+				return 4;
 			} else if (cosP > cosn2p7) {
 				return 1;
 			}
 		} else {
-			if (cosP > cos43) {
+			if (cosP > cos53) {
 				return 1;
-			} else if (cosP > cos83p8) {
+			} else if (cosP > cos103p8) {
 				return 2;
-			} else if (cosP > cos126) {
+			} else if (cosP > cos156) {
 				return 3;
-			} else if (cosP > cos168p8) {
-				return 4;
 			} else {
-				return 5;
+				return 4;
 			}
 		}
 
@@ -668,79 +745,54 @@ public class FloatMenuService extends Service {
 		Intent intent = null;
 		switch (currentPoint) {
 		case 1:
-			switchHidenSilent();
-			intent = new Intent();
-			intent.putExtra("location", "");
-			intent.putExtra("folder", "");
-			intent.putExtra("initpenmode", 1);
-			ComponentName componentName = new ComponentName(
-					"com.android.smemo",
-					"com.android.smemo.DesktopMemoActivity");
-			intent.setComponent(componentName);
-			startActivitySafely(intent);
-			// TODO
-			break;
+            stopSelf();
+            intent = new Intent();
+            intent.putExtra("location", "");
+            intent.putExtra("folder", "");
+            intent.putExtra("initpenmode", 1);
+            intent.putExtra("isDesktop", true);
+            ComponentName componentName = new ComponentName("com.android.smemo", "com.android.smemo.DesktopMemoActivity");
+            intent.setComponent(componentName);
+            startActivitySafely(intent);
+            //TODO
+            break;
 		case 2:
-			switchHidenSilent();
-			intent = new Intent();
-			intent.setComponent(new ComponentName("com.android.gallery3d",
-					"com.android.gallery3d.app.Gallery"));
-			startActivitySafely(intent);
-
-			break;
+		    stopSelf();
+			screenShot(0);
+            break;
 		case 3:
+		    stopSelf();
+			screenShot(0);
+            break;
 
-			if (isExpanded) {
-				if (mWindowManager != null) {
-					mWindowManager.removeView(bgView);
-
-					mWindowManager.removeView(parent);
-				}
-				if (localChangedReceiver != null) {
-					unregisterReceiver(localChangedReceiver);
-				}
-
-			} else {
-				if (mWindowManager != null) {
-					mWindowManager.removeView(hidenView);
-				}
-			}
-
-			final Intent intentScreenShot = new Intent(SCREEN_SHOT);
-			mHandler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					sendBroadcast(intentScreenShot);
-				}
-			}, 50);
-
-			mHandler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					isExpanded = false;
-					addHidenView((int) mLastX, (int) mLastY);
-				}
-			}, 1000);
-
-			break;
 		case 4:
-			switchHidenSilent();
-			((SearchManager) getSystemService(Context.SEARCH_SERVICE))
-					.startSearch(null, false, null, null, true);
-			break;
-		case 5:
-			switchHidenSilent();
-			intent = new Intent();
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			intent.setComponent(new ComponentName("com.pen.demo",
-					"com.pen.demo.PenWindowActivity"));
-			startActivitySafely(intent);
-			break;
+
+			 stopSelf();
+			screenShot(2);
+            break;
 		default:
 			break;
 		}
 	}
+    private void screenShot(int type) {
 
+        Log.w(TAG, "screenShot =" +type);
+        if(type == 0 || type == 1){
+            Intent inentScrapper = new Intent("com.android.pic.floatwindow");
+            inentScrapper.putExtra("pic_show_float", false);
+            startService(inentScrapper);
+        }
+        final Intent intentScreenShot = new Intent(SCREEN_SHOT);
+        intentScreenShot.putExtra("spen_cut_type", type);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sendBroadcast(intentScreenShot);
+            }
+        }, 50);
+
+         stopSelf();
+    }
 	private void launchCamera(Intent intent) {
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_SINGLE_TOP

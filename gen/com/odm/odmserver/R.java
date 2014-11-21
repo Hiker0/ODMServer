@@ -11,38 +11,34 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int airbutton_global_bg=0x7f020000;
-        public static final int airbutton_global_center=0x7f020001;
-        public static final int airbutton_global_center_shadow=0x7f020002;
-        public static final int airbutton_global_focus=0x7f020003;
-        public static final int assistant_button=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int ic_launcher_settings=0x7f020006;
-        public static final int screen_edit=0x7f020007;
-        public static final int screen_region_edit=0x7f020008;
-        public static final int screen_shot=0x7f020009;
-        public static final int sector_00=0x7f02000a;
-        public static final int sector_01=0x7f02000b;
-        public static final int sector_02=0x7f02000c;
-        public static final int sector_03=0x7f02000d;
-        public static final int sector_04=0x7f02000e;
-        public static final int sector_05=0x7f02000f;
-        public static final int sector_search=0x7f020010;
-        public static final int sector_spen=0x7f020011;
+        public static final int airbutton_global_50_focus=0x7f020000;
+        public static final int airbutton_global_bg=0x7f020001;
+        public static final int airbutton_global_center=0x7f020002;
+        public static final int airbutton_global_center_highlight=0x7f020003;
+        public static final int airbutton_global_center_shadow=0x7f020004;
+        public static final int airbutton_global_focus=0x7f020005;
+        public static final int assistant_button=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int screen_edit=0x7f020008;
+        public static final int screen_region_edit=0x7f020009;
+        public static final int screen_shot=0x7f02000a;
+        public static final int sector_search=0x7f02000b;
+        public static final int sector_spen=0x7f02000c;
     }
     public static final class id {
         public static final int action_memo=0x7f070007;
         public static final int air_animate=0x7f070001;
         public static final int air_bg=0x7f070002;
         public static final int air_center=0x7f070004;
+        public static final int air_center_highlight=0x7f07000e;
         public static final int air_select=0x7f070003;
         public static final int air_shadow=0x7f070005;
         public static final int assistant_button=0x7f070000;
         public static final int circle_layout=0x7f07000c;
-        public static final int id_start=0x7f07000e;
-        public static final int id_stop=0x7f07000f;
-        public static final int pen_window=0x7f07000b;
-        public static final int s_finder=0x7f07000a;
+        public static final int id_start=0x7f07000f;
+        public static final int id_stop=0x7f070010;
+        public static final int pen_window=0x7f07000a;
+        public static final int s_finder=0x7f07000b;
         public static final int scrap_booker=0x7f070008;
         public static final int screen_write=0x7f070009;
         public static final int sector_bg=0x7f070006;
@@ -52,7 +48,8 @@ public final class R {
         public static final int assistant=0x7f030000;
         public static final int bgview=0x7f030001;
         public static final int float_menu=0x7f030002;
-        public static final int start_activity=0x7f030003;
+        public static final int float_menu_note4=0x7f030003;
+        public static final int start_activity=0x7f030004;
     }
     public static final class raw {
         public static final int airbutton_close=0x7f040000;

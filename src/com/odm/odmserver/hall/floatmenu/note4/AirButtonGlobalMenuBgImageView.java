@@ -1,4 +1,4 @@
-package com.odm.odmserver.hall.floatmenu;
+package com.odm.odmserver.hall.floatmenu.note4;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -138,7 +138,3 @@ private final int ANIMATION_DURATION = 1000;
   }
 }
 
-/* Location:           D:\testapk\decode\dex2jar-0.0.9.9\Samsung_dex2jar.jar
- * Qualified Name:     android.samsung.android.airbutton.view.AirButtonGlobalMenuBgImageView
- * JD-Core Version:    0.5.4
- */

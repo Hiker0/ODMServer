@@ -1,10 +1,10 @@
-package com.odm.odmserver.hall.floatmenu;
+package com.odm.odmserver.hall.floatmenu.note4;
 
 import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.media.SoundPool;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,10 +16,11 @@ import com.odm.odmserver.R;
 public class AirAnimationBgView extends FrameLayout {
 	
 	Context mContext = null;
+	
 	  private int CENTER_IMAGE_DURATION = 600;
 	  private int DESCRIPTION_DURATION = 150;
 	  private int FOCUS_DURATION = 200;
-	  private int MENU_ICON_DURATION = 120;
+	  private int MENU_ICON_DURATION = 120;  
 	  private int MENU_ICON_INTERVAL = 50;
 	  private int START_DELAY = 0;
 	  
@@ -27,9 +28,10 @@ public class AirAnimationBgView extends FrameLayout {
 		protected ImageView selectView = null;
 		protected ImageView centerView = null;
 		protected ImageView shadowView = null;
+        protected ImageView highlightView = null;
 
 		private ObjectAnimator mMoveFocusAnimation = new ObjectAnimator();
- 	    Handler mHandler = new Handler();
+	Handler mHandler = new Handler();
 
 	public AirAnimationBgView(Context context) {
 		super(context);
@@ -60,6 +62,7 @@ public class AirAnimationBgView extends FrameLayout {
 		bgView = (AirButtonGlobalMenuBgImageView) this.findViewById(R.id.air_bg);
 		selectView=(ImageView) this.findViewById(R.id.air_select);
 		centerView = (ImageView) this.findViewById(R.id.air_center);
+        highlightView = (ImageView) this.findViewById(R.id.air_center_highlight);
 		shadowView =(ImageView) this.findViewById(R.id.air_shadow);
 		/*
 		bgView= new AirButtonGlobalMenuBgImageView(mContext);
@@ -109,35 +112,51 @@ public class AirAnimationBgView extends FrameLayout {
 			rotationFloat = -2.7F;
 			break;
 		case 2:
-			rotationFloat = 40.299999F;
+			rotationFloat = 50.299999F;
 			break;
 		case 3:
-			rotationFloat = 83.800003F;
+			rotationFloat = 113.800003F;
 			break;
 		case 4:
-			rotationFloat = 126.0F;
-			break;
-		case 5:
-			rotationFloat = 168.8F;
+			rotationFloat = 170.0F;
 			break;
 		default:
 			break;
 		}
+
 		selectView.setRotation(rotationFloat);
 		selectView.setVisibility(View.VISIBLE);
-		/*
-		if ((mMoveFocusAnimation != null) && (mMoveFocusAnimation.isRunning())){
-			mMoveFocusAnimation.cancel();
-		}
-		float[] arrayOfFloat = new float[2];
-		arrayOfFloat[0] = selectView.getRotation();
-		arrayOfFloat[1] = rotationFloat;
-		mMoveFocusAnimation = ObjectAnimator.ofFloat(selectView, "rotation",
-				arrayOfFloat);
-		mMoveFocusAnimation.setDuration(-50 + this.FOCUS_DURATION);
-		mMoveFocusAnimation.start();*/
+
+
 	}
 	
+	AnimatorListener mStartAnimationListener = new AnimatorListener(){
+
+		@Override
+		public void onAnimationCancel(Animator animation) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onAnimationEnd(Animator animation) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onAnimationRepeat(Animator animation) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onAnimationStart(Animator animation) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
 	
 	void startOpenAnimation(){
 
@@ -168,9 +187,10 @@ public class AirAnimationBgView extends FrameLayout {
 	    localAnimatorSet1.playTogether(arrayOfAnimator1);
 	    localAnimatorSet1.setStartDelay(this.START_DELAY);
 	    localAnimatorSet1.setDuration(this.CENTER_IMAGE_DURATION);
-	   // localAnimatorSet1.addListener(this.mStartAnimationListener);
+	    localAnimatorSet1.addListener(this.mStartAnimationListener);
 	    localAnimatorSet1.start();
-	    shadowView.setVisibility(View.VISIBLE);
+		 shadowView.setVisibility(View.VISIBLE);
+		 
 	    
 
 	    float[] arrayOfFloat4 = new float[2];
@@ -193,7 +213,7 @@ public class AirAnimationBgView extends FrameLayout {
 	    localAnimatorSet2.playTogether(arrayOfAnimator2);
 	    localAnimatorSet2.setStartDelay(this.START_DELAY);
 	    localAnimatorSet2.setDuration(this.CENTER_IMAGE_DURATION);
-	    //localAnimatorSet2.addListener(this.mStartAnimationListener);
+	    localAnimatorSet2.addListener(this.mStartAnimationListener);
 	    localAnimatorSet2.start();
 	    centerView.setVisibility(View.VISIBLE);
 	
@@ -248,10 +268,21 @@ public class AirAnimationBgView extends FrameLayout {
 	    arrayOfAnimator2[1] = localObjectAnimator5;
 	    arrayOfAnimator2[2] = localObjectAnimator6;
 	    localAnimatorSet2.playTogether(arrayOfAnimator2);
+	    localAnimatorSet2.setStartDelay(this.START_DELAY);
 	    localAnimatorSet2.setDuration(this.CENTER_IMAGE_DURATION);
 	    localAnimatorSet2.start();
-	    
-		bgView.startCloseAnimation(this.START_DELAY / 2,null );
+	      
+		bgView.startCloseAnimation(0,null );
 	}
-  
+    public void updateHighlightCircleBg() {
+        centerView.setVisibility(View.INVISIBLE);
+        highlightView.setVisibility(View.VISIBLE);
+
+    }
+
+    public void resetHighlightCircleBg() {
+        centerView.setVisibility(View.VISIBLE);
+        highlightView.setVisibility(View.INVISIBLE);
+
+    }
 }
