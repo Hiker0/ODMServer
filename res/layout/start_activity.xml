@@ -12,13 +12,13 @@
             android:id="@+id/id_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-        	android:text="START"
+        	android:text="@string/START"
         />
         <Button
             android:id="@+id/id_stop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="STOP"/>
+            android:text="@string/STOP"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -20,7 +20,6 @@
 package com.odm.odmserver.hall.floatmenu.note4;
 
 import android.animation.ObjectAnimator;
-import android.app.SearchManager;
 import android.app.Service;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -37,7 +36,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
@@ -54,8 +52,7 @@ public class FloatMenuService extends Service {
 	private String TAG = "FloatMenuService";
 	
 	private static final String SCREEN_SHOT = "android.intent.action.floatmenu.screenshot";
-	private static final boolean RUN_WHEN_EXIT = false;
-	private static final int ITEM_NUM = 4;
+	private static final int ITEM_NUM = 4; 
 	
 	private static WindowManager.LayoutParams mWindowParams;
 	private static WindowManager mWindowManager;
@@ -94,14 +91,12 @@ public class FloatMenuService extends Service {
 	ImageView actionMemo = null;
 	ImageView scrapBooker = null;
 	ImageView screenWrite = null;
-//	ImageView sFinder = null;
 	ImageView penWindow = null;
 	ImageView centerView = null;
 	View[] targetViews;
 
 	LinearLayout actionLabelParent = null;
 	TextView actionLabel = null;
-	ImageView hidenView = null;
 	FrameLayout bgView = null;
 
 	private AirAnimationBgView mAirAnimationBgView = null;
@@ -119,7 +114,6 @@ public class FloatMenuService extends Service {
 	// set below
 
 	boolean isInCircle;
-	boolean isExpanded = true;
 	boolean isDraging = true;
 	int curPart = 0;
 
@@ -138,17 +132,14 @@ public class FloatMenuService extends Service {
 		statusBarHeight = getStatusBarHeight();
 		initSoundPool();
 		initExpandView();
-		initHidenView();
       
-		if (isExpanded) {
-			IntentFilter intentFilter = new IntentFilter(
-					Intent.ACTION_LOCALE_CHANGED);
-			registerReceiver(localChangedReceiver, intentFilter);
+		
+		IntentFilter intentFilter = new IntentFilter(
+				Intent.ACTION_LOCALE_CHANGED);
+		registerReceiver(localChangedReceiver, intentFilter);
 
-			addExpandView(CUSTOM_LOCATION_X, CUSTOM_LOCATION_Y);
-		} else {
-			addHidenView(CUSTOM_LOCATION_X, CUSTOM_LOCATION_Y);
-		}
+		addExpandView(CUSTOM_LOCATION_X, CUSTOM_LOCATION_Y);
+		
 		Log.w(TAG, "onCreate end ");
 
 	}
@@ -157,7 +148,7 @@ public class FloatMenuService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		// TODO Auto-generated method stub
 		Log.w(TAG, "onStartCommand end ");
-		if (isExpanded && mAirAnimationBgView != null) {
+		if ( mAirAnimationBgView != null) {
 			mHandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
@@ -174,22 +165,16 @@ public class FloatMenuService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 		
-		if (isExpanded) {
-			if (mWindowManager != null) {
-				mWindowManager.removeView(bgView);
 
-				mWindowManager.removeView(parent);
-			}
-			if (localChangedReceiver != null) {
-				unregisterReceiver(localChangedReceiver);
-			}
+		if (mWindowManager != null) {
+			mWindowManager.removeView(bgView);
 
-
-		} else { 
-			if (mWindowManager != null) {
-				mWindowManager.removeView(hidenView);
-			}
+			mWindowManager.removeView(parent);
 		}
+		if (localChangedReceiver != null) {
+			unregisterReceiver(localChangedReceiver);
+		}
+
 
 		if (sound != null) {
 			sound.release();
@@ -200,13 +185,6 @@ public class FloatMenuService extends Service {
 		sound = new SoundPool(1, 1, 0);
 		sOpenSoundId = sound.load(this, R.raw.airbutton_open, 1);
 		sCloseSoundId = sound.load(this, R.raw.airbutton_close, 1);
-	}
-
-	private void initHidenView() {
-		hidenView = (ImageView) LayoutInflater.from(this).inflate(
-				R.layout.assistant, null);
-		hidenView.setOnTouchListener(hideViewListener);
-
 	}
 
 	private void initExpandView() {
@@ -233,7 +211,7 @@ public class FloatMenuService extends Service {
 		actionMemo = (ImageView) contentView.findViewById(R.id.action_memo);
 		scrapBooker = (ImageView) contentView.findViewById(R.id.scrap_booker);
 		screenWrite = (ImageView) contentView.findViewById(R.id.screen_write);
-//		sFinder = (ImageView) contentView.findViewById(R.id.s_finder);
+
 		penWindow = (ImageView) contentView.findViewById(R.id.pen_window);
 
 		centerView = (ImageView) parent.findViewById(R.id.air_center);
@@ -267,85 +245,24 @@ public class FloatMenuService extends Service {
 
 	}
 
-	private void switchExpand() {
-		if (!isExpanded) {
-			isExpanded = true;
-			playOpen();
-
-			mWindowManager = (WindowManager) getApplicationContext()
-					.getSystemService("window");
-			mWindowManager.removeView(hidenView);
-
-			IntentFilter intentFilter = new IntentFilter(
-					Intent.ACTION_LOCALE_CHANGED);
-			registerReceiver(localChangedReceiver, intentFilter);
-
-			addExpandView((int) mLastX, (int) mLastY);
-			playOpen();
-
-			mHandler.postDelayed(new Runnable() {
-
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-
-				}
-
-			}, 500);
-
-		}
-	}
-
 	private void switchHiden() {
-		if (isExpanded) {
-			isExpanded = false;
-			playClose();
 
-			mHandler.postDelayed(new Runnable() {
+		playClose();
 
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					mWindowManager = (WindowManager) getApplicationContext()
-							.getSystemService("window");
-					mWindowManager.removeView(parent);
-					mWindowManager.removeView(bgView);
+		mHandler.postDelayed(new Runnable() {
 
-					if (localChangedReceiver != null) {
-						unregisterReceiver(localChangedReceiver);
-					}
-					addHidenView((int) mLastX, (int) mLastY);
-				}
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mWindowManager = (WindowManager) getApplicationContext()
+						.getSystemService("window");
 
-			}, 500);
+				stopSelf();
+			}
 
-		}
+		}, 500);
 	}
 
-	private void switchHidenSilent() {
-		if (isExpanded) {
-			isExpanded = false;
-
-			mHandler.postDelayed(new Runnable() {
-
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					mWindowManager = (WindowManager) getApplicationContext()
-							.getSystemService("window");
-					mWindowManager.removeView(parent);
-					mWindowManager.removeView(bgView);
-
-					if (localChangedReceiver != null) {
-						unregisterReceiver(localChangedReceiver);
-					}
-					addHidenView((int) mLastX, (int) mLastY);
-				}
-
-			}, 100);
-
-		}
-	}
 
 	private void addExpandView(int x, int y) {
 		mWindowManager = (WindowManager) getApplicationContext()
@@ -375,25 +292,6 @@ public class FloatMenuService extends Service {
 
 	}
 
-	private void addHidenView(int x, int y) {
-		if(!RUN_WHEN_EXIT){
-			this.stopSelf();
-		}
-		mWindowManager = (WindowManager) getApplicationContext()
-				.getSystemService("window");
-             
-		mWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-		mWindowParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
-		mWindowParams.flags = 40;
-		mWindowParams.format = PixelFormat.TRANSLUCENT;
-		mWindowParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-
-		mWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
-		mWindowParams.x = x - hidenView.getWidth() / 2;
-		mWindowParams.y = y - statusBarHeight - hidenView.getHeight() / 2;
-		mWindowParams.format = PixelFormat.RGBA_8888;
-		mWindowManager.addView(hidenView, mWindowParams);
-	}
 
 	private void updateExpandView(int x, int y) {
 		mWindowManager = (WindowManager) getApplicationContext()
@@ -404,14 +302,7 @@ public class FloatMenuService extends Service {
 		mWindowManager.updateViewLayout(parent, mWindowParams);
 	}
 	
-	private void updateHidenView(int x, int y) {
-		mWindowManager = (WindowManager) getApplicationContext()
-				.getSystemService("window");
 
-		mWindowParams.x = x - hidenView.getWidth() / 2;
-		mWindowParams.y = y - statusBarHeight - hidenView.getHeight() / 2;
-		mWindowManager.updateViewLayout(hidenView, mWindowParams);
-	}
 	
 	void playOpenSound() {
 		sound.stop(this.mStreamSoundId);
@@ -611,50 +502,10 @@ public class FloatMenuService extends Service {
 		}
 	};
 	
-	View.OnTouchListener hideViewListener = new View.OnTouchListener() {
-
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			// TODO Auto-generated method stub
-			int mRawX = (int) event.getRawX();
-			int mRawY = (int) event.getRawY();
-
-			switch (event.getAction() & MotionEvent.ACTION_MASK) {
-			case MotionEvent.ACTION_DOWN:
-				mLastX = mRawX;
-				mLastY = mRawY;
-				isDraging = false;
-				break;
-			case MotionEvent.ACTION_MOVE:
-				if (isDraging || Math.abs(mRawX - mLastX) > touchSlop
-						|| Math.abs(mRawY - mLastY) > touchSlop) {
-					mLastX = mRawX;
-					mLastY = mRawY;
-					isDraging = true;
-					updateHidenView(mRawX, mRawY);
-				}
-				break;
-			case MotionEvent.ACTION_UP:
-			case MotionEvent.ACTION_CANCEL:
-				if (!isDraging) {
-					switchExpand();
-				}
-				isDraging = false;
-				break;
-			default:
-				;
-			}
-
-			return true;
-		}
-	};
 
 	View.OnTouchListener expandViewListener = new View.OnTouchListener() {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			if (!isExpanded) {
-				return true;
-			}
 
 			int mRawX = (int) event.getRawX();
 			int mRawY = (int) event.getRawY();
@@ -762,7 +613,7 @@ public class FloatMenuService extends Service {
             break;
 		case 3:
 		    stopSelf();
-			screenShot(0);
+			screenShot(1);
             break;
 
 		case 4:
@@ -793,16 +644,7 @@ public class FloatMenuService extends Service {
 
          stopSelf();
     }
-	private void launchCamera(Intent intent) {
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-				| Intent.FLAG_ACTIVITY_SINGLE_TOP
-				| Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		try {
-			startActivity(intent);
-		} catch (ActivityNotFoundException e) {
-			Log.w(TAG, "Activity not found for intent + " + intent.getAction());
-		}
-	}
+
 
 	void startActivitySafely(Intent intent) {
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

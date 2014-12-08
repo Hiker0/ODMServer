@@ -56,13 +56,15 @@ public final class R {
         public static final int airbutton_open=0x7f040001;
     }
     public static final class string {
-        public static final int action_memo=0x7f050002;
-        public static final int air_command=0x7f050001;
+        public static final int START=0x7f050001;
+        public static final int STOP=0x7f050002;
+        public static final int action_memo=0x7f050004;
+        public static final int air_command=0x7f050003;
         public static final int app_name=0x7f050000;
-        public static final int pen_window=0x7f050006;
-        public static final int s_finder=0x7f050005;
-        public static final int scrap_booker=0x7f050003;
-        public static final int screen_writer=0x7f050004;
+        public static final int pen_window=0x7f050008;
+        public static final int s_finder=0x7f050007;
+        public static final int scrap_booker=0x7f050005;
+        public static final int screen_writer=0x7f050006;
     }
     public static final class style {
         /** 
