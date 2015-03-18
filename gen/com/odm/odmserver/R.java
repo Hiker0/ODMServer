@@ -26,45 +26,51 @@ public final class R {
         public static final int sector_spen=0x7f02000c;
     }
     public static final class id {
-        public static final int action_memo=0x7f070007;
-        public static final int air_animate=0x7f070001;
-        public static final int air_bg=0x7f070002;
-        public static final int air_center=0x7f070004;
-        public static final int air_center_highlight=0x7f07000e;
-        public static final int air_select=0x7f070003;
-        public static final int air_shadow=0x7f070005;
-        public static final int assistant_button=0x7f070000;
-        public static final int circle_layout=0x7f07000c;
-        public static final int id_start=0x7f07000f;
-        public static final int id_stop=0x7f070010;
-        public static final int pen_window=0x7f07000a;
-        public static final int s_finder=0x7f07000b;
-        public static final int scrap_booker=0x7f070008;
-        public static final int screen_write=0x7f070009;
-        public static final int sector_bg=0x7f070006;
-        public static final int sector_title=0x7f07000d;
+        public static final int action_memo=0x7f080007;
+        public static final int air_animate=0x7f080001;
+        public static final int air_bg=0x7f080002;
+        public static final int air_center=0x7f080004;
+        public static final int air_center_highlight=0x7f08000e;
+        public static final int air_select=0x7f080003;
+        public static final int air_shadow=0x7f080005;
+        public static final int assistant_button=0x7f080000;
+        public static final int circle_layout=0x7f08000c;
+        public static final int id_start=0x7f080010;
+        public static final int id_stop=0x7f080011;
+        public static final int pen_window=0x7f08000a;
+        public static final int s_finder=0x7f08000b;
+        public static final int scrap_booker=0x7f080008;
+        public static final int screen_write=0x7f080009;
+        public static final int sector_bg=0x7f080006;
+        public static final int sector_title=0x7f08000d;
+        public static final int surface_view=0x7f08000f;
     }
     public static final class layout {
         public static final int assistant=0x7f030000;
         public static final int bgview=0x7f030001;
         public static final int float_menu=0x7f030002;
         public static final int float_menu_note4=0x7f030003;
-        public static final int start_activity=0x7f030004;
+        public static final int screen_protector_layout=0x7f030004;
+        public static final int start_activity=0x7f030005;
     }
     public static final class raw {
-        public static final int airbutton_close=0x7f040000;
-        public static final int airbutton_open=0x7f040001;
+        public static final int airbutton_close=0x7f050000;
+        public static final int airbutton_open=0x7f050001;
     }
     public static final class string {
-        public static final int START=0x7f050001;
-        public static final int STOP=0x7f050002;
-        public static final int action_memo=0x7f050004;
-        public static final int air_command=0x7f050003;
-        public static final int app_name=0x7f050000;
-        public static final int pen_window=0x7f050008;
-        public static final int s_finder=0x7f050007;
-        public static final int scrap_booker=0x7f050005;
-        public static final int screen_writer=0x7f050006;
+        public static final int START=0x7f060001;
+        public static final int STOP=0x7f060002;
+        public static final int SettingName=0x7f060009;
+        public static final int action_memo=0x7f060004;
+        public static final int air_command=0x7f060003;
+        public static final int app_name=0x7f060000;
+        public static final int enable_screen_protector=0x7f06000b;
+        public static final int enable_sound=0x7f06000c;
+        public static final int pen_window=0x7f060008;
+        public static final int protector=0x7f06000a;
+        public static final int s_finder=0x7f060007;
+        public static final int scrap_booker=0x7f060005;
+        public static final int screen_writer=0x7f060006;
     }
     public static final class style {
         /** 
@@ -88,10 +94,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
+    }
+    public static final class xml {
+        public static final int setting_preference=0x7f040000;
     }
 }
