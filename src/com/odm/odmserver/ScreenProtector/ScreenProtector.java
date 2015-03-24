@@ -4,6 +4,7 @@ import com.odm.odmserver.SettingManager;
 import com.odm.odmserver.UpdateMonitor;
 import com.odm.odmserver.UpdateMonitorCallback;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -26,10 +27,14 @@ public class ScreenProtector {
 			// TODO Auto-generated method stub
 			 Log.d(TAG,"onScreenTurnedOff");
 			if(enabled){
-				Intent intent = new Intent();
-				intent.setAction(ACTION);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				mContext.startActivity(intent);
+				try{
+					Intent intent = new Intent();
+					intent.setAction(ACTION);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					mContext.startActivity(intent);
+				}catch(ActivityNotFoundException e){
+					e.printStackTrace();
+				}
 			}
 		}
 

@@ -12,7 +12,13 @@
     <string name="pen_window">Pen Window</string>
     
     <string name="SettingName">ODM Settings</string>
+    <string name="file_selector">File selector</string>
+     
     <string name="protector">Screen Protector</string>
     <string name="enable_screen_protector">Enable screen protector</string>
+    <string name="enable_screen_protector_info">Enable screen protector when keyguard locked</string>
     <string name="enable_sound">Enable Sound</string>
+    <string name="enable_sound_info">Enable Sound when playing protector video</string>
+    <string name="choose_protector_source">Choose protector source</string>
+  	<string name="protector_source_info">Select a picture or a video</string>
 </resources>

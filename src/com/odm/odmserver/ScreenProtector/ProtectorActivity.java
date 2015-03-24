@@ -1,10 +1,17 @@
 package com.odm.odmserver.ScreenProtector;
 
+import java.io.File;
+
 import com.odm.odmserver.R;
 import com.odm.odmserver.SettingManager;
+import com.odm.odmserver.util.FileType;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,6 +27,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 public class ProtectorActivity extends Activity implements Callback,
 		OnTouchListener {
@@ -29,7 +37,11 @@ public class ProtectorActivity extends Activity implements Callback,
 	private SurfaceView mSurfaceView;
 	private MediaPlayer mMediaPlayer;
 	private SurfaceHolder mHolder;
-
+	private SettingManager mSettingManager;
+	private String sourcePath = null;
+	private ImageView photoView = null;
+	private Bitmap bitmap = null;
+	private Point outSize = new Point();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -40,9 +52,18 @@ public class ProtectorActivity extends Activity implements Callback,
 
 		this.setContentView(R.layout.screen_protector_layout);
 		
-		
-		initMedia();
 
+		mSurfaceView = (SurfaceView) findViewById(R.id.surface_view);
+		photoView = (ImageView) findViewById(R.id.photo_view);
+		
+		Display display = this.getWindowManager().getDefaultDisplay();
+		display.getSize(outSize);
+		
+		mSettingManager = SettingManager.getInstance(this);
+		sourcePath = mSettingManager.getProtectorSourcePath();
+		
+		showPictureOrVideo();
+		
 		PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
 		mWakeLock = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP
 				| PowerManager.SCREEN_BRIGHT_WAKE_LOCK
@@ -50,6 +71,26 @@ public class ProtectorActivity extends Activity implements Callback,
 		mWakeLock.acquire();
 	}
 
+	private void showPictureOrVideo(){
+		
+		int type = FileType.getFileType(sourcePath);
+		Log.d(TAG, "sourcePath:"+sourcePath+" type:"+type);
+		
+		if(type == FileType.FILE_TYPE_VIDEO){
+			mSurfaceView.setVisibility(View.VISIBLE);
+			photoView.setVisibility(View.GONE);
+			initMedia();
+		}else if(type == FileType.FILE_TYPE_IMAGE){
+			mSurfaceView.setVisibility(View.GONE);
+			photoView.setVisibility(View.VISIBLE);
+			initPhoto();
+		}else{
+			mSurfaceView.setVisibility(View.GONE);
+			photoView.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -73,13 +114,34 @@ public class ProtectorActivity extends Activity implements Callback,
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	}
-
+	
+	private void initPhoto(){
+		BitmapFactory.Options opts = new BitmapFactory.Options();
+		opts.inJustDecodeBounds = true;
+		bitmap = BitmapFactory.decodeFile(sourcePath, opts);
+		
+		int wRatio = (int)Math.ceil(opts.outWidth/outSize.x);
+		int hRatio = (int)Math.ceil(opts.outHeight/outSize.y);
+		if (wRatio > 1 && hRatio > 1) {
+			if (wRatio > hRatio) {
+				opts.inSampleSize = wRatio;
+			} else {
+				opts.inSampleSize = hRatio;
+			}
+		}
+		opts.inJustDecodeBounds = false;
+			  
+		bitmap = BitmapFactory.decodeFile(sourcePath, opts);
+		Drawable drawable = new BitmapDrawable(this.getResources(),bitmap);
+		photoView.setImageDrawable(drawable);
+		photoView.setFocusable(true);
+		photoView.setOnTouchListener(this);
+		
+	}
+	
 	private void initMedia() {
-		Display display = this.getWindowManager().getDefaultDisplay();
-		Point outSize = new Point();
-		display.getSize(outSize);
 
-		mSurfaceView = (SurfaceView) findViewById(R.id.surface_view);
+
 		mSurfaceView.setOnTouchListener(this);
 		mHolder = mSurfaceView.getHolder();
 
@@ -93,7 +155,7 @@ public class ProtectorActivity extends Activity implements Callback,
 
 		mMediaPlayer.setLooping(true);
 		
-		SettingManager mSettingManager = SettingManager.getInstance(this);
+
 		if(! mSettingManager.getProtectorSoundEnabled()){
 			mMediaPlayer.setVolume(0, 0);
 		}
@@ -104,12 +166,19 @@ public class ProtectorActivity extends Activity implements Callback,
 
 		mMediaPlayer.setDisplay(mHolder);
 		try {
-			mMediaPlayer.setDataSource(VIDEO_PATH);
+			mMediaPlayer.setDataSource(sourcePath);
 			mMediaPlayer.prepare();
 			mMediaPlayer.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+	
 	}
 
 	@Override
@@ -121,7 +190,10 @@ public class ProtectorActivity extends Activity implements Callback,
 			mMediaPlayer.release();
 			mMediaPlayer = null;
 		}
-
+		
+		if(bitmap!=null){
+			bitmap.recycle();
+		}
 		super.onDestroy();
 	}
 

@@ -66,12 +66,18 @@ public class UpdateMonitor {
 		
 		 Log.d(TAG," create UpdateMonitor " );
 		 
+        if(mContext != null){
+        	mContext.unregisterReceiver(mBroadcastReceiver);
+        }     
+        
 		mContext = context;
+		mInstance = this;
 		mCallbacks = new ArrayList<WeakReference<UpdateMonitorCallback>>();
 
         final IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
+        
 
         context.registerReceiver(mBroadcastReceiver, filter);
 

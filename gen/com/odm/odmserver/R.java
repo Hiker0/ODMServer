@@ -10,6 +10,9 @@ package com.odm.odmserver;
 public final class R {
     public static final class attr {
     }
+    public static final class dimen {
+        public static final int tab_height=0x7f060000;
+    }
     public static final class drawable {
         public static final int airbutton_global_50_focus=0x7f020000;
         public static final int airbutton_global_bg=0x7f020001;
@@ -18,59 +21,83 @@ public final class R {
         public static final int airbutton_global_center_shadow=0x7f020004;
         public static final int airbutton_global_focus=0x7f020005;
         public static final int assistant_button=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int screen_edit=0x7f020008;
-        public static final int screen_region_edit=0x7f020009;
-        public static final int screen_shot=0x7f02000a;
-        public static final int sector_search=0x7f02000b;
-        public static final int sector_spen=0x7f02000c;
+        public static final int fm_blank=0x7f020007;
+        public static final int fm_blank_tab=0x7f020008;
+        public static final int fm_folder=0x7f020009;
+        public static final int fm_picture=0x7f02000a;
+        public static final int fm_unknown=0x7f02000b;
+        public static final int fm_video=0x7f02000c;
+        public static final int huaqi=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int ic_menu_back=0x7f02000f;
+        public static final int ic_menu_cancel=0x7f020010;
+        public static final int protector=0x7f020011;
+        public static final int screen_edit=0x7f020012;
+        public static final int screen_region_edit=0x7f020013;
+        public static final int screen_shot=0x7f020014;
+        public static final int sector_search=0x7f020015;
+        public static final int sector_spen=0x7f020016;
     }
     public static final class id {
-        public static final int action_memo=0x7f080007;
-        public static final int air_animate=0x7f080001;
-        public static final int air_bg=0x7f080002;
-        public static final int air_center=0x7f080004;
-        public static final int air_center_highlight=0x7f08000e;
-        public static final int air_select=0x7f080003;
-        public static final int air_shadow=0x7f080005;
-        public static final int assistant_button=0x7f080000;
-        public static final int circle_layout=0x7f08000c;
-        public static final int id_start=0x7f080010;
-        public static final int id_stop=0x7f080011;
-        public static final int pen_window=0x7f08000a;
-        public static final int s_finder=0x7f08000b;
-        public static final int scrap_booker=0x7f080008;
-        public static final int screen_write=0x7f080009;
-        public static final int sector_bg=0x7f080006;
-        public static final int sector_title=0x7f08000d;
-        public static final int surface_view=0x7f08000f;
+        public static final int action_memo=0x7f09000d;
+        public static final int air_animate=0x7f090007;
+        public static final int air_bg=0x7f090008;
+        public static final int air_center=0x7f09000a;
+        public static final int air_center_highlight=0x7f090014;
+        public static final int air_select=0x7f090009;
+        public static final int air_shadow=0x7f09000b;
+        public static final int assistant_button=0x7f090000;
+        public static final int back=0x7f090003;
+        public static final int cancel=0x7f090004;
+        public static final int circle_layout=0x7f090012;
+        public static final int grid_view=0x7f090002;
+        public static final int id_start=0x7f090017;
+        public static final int id_stop=0x7f090018;
+        public static final int imgFileIcon=0x7f090005;
+        public static final int path=0x7f090001;
+        public static final int pen_window=0x7f090010;
+        public static final int photo_view=0x7f090016;
+        public static final int s_finder=0x7f090011;
+        public static final int scrap_booker=0x7f09000e;
+        public static final int screen_write=0x7f09000f;
+        public static final int sector_bg=0x7f09000c;
+        public static final int sector_title=0x7f090013;
+        public static final int surface_view=0x7f090015;
+        public static final int tvFileName=0x7f090006;
     }
     public static final class layout {
         public static final int assistant=0x7f030000;
         public static final int bgview=0x7f030001;
-        public static final int float_menu=0x7f030002;
-        public static final int float_menu_note4=0x7f030003;
-        public static final int screen_protector_layout=0x7f030004;
-        public static final int start_activity=0x7f030005;
+        public static final int file_selector_layout=0x7f030002;
+        public static final int filechooser_gridview_item=0x7f030003;
+        public static final int float_menu=0x7f030004;
+        public static final int float_menu_note4=0x7f030005;
+        public static final int screen_protector_layout=0x7f030006;
+        public static final int start_activity=0x7f030007;
     }
     public static final class raw {
         public static final int airbutton_close=0x7f050000;
         public static final int airbutton_open=0x7f050001;
     }
     public static final class string {
-        public static final int START=0x7f060001;
-        public static final int STOP=0x7f060002;
-        public static final int SettingName=0x7f060009;
-        public static final int action_memo=0x7f060004;
-        public static final int air_command=0x7f060003;
-        public static final int app_name=0x7f060000;
-        public static final int enable_screen_protector=0x7f06000b;
-        public static final int enable_sound=0x7f06000c;
-        public static final int pen_window=0x7f060008;
-        public static final int protector=0x7f06000a;
-        public static final int s_finder=0x7f060007;
-        public static final int scrap_booker=0x7f060005;
-        public static final int screen_writer=0x7f060006;
+        public static final int START=0x7f070001;
+        public static final int STOP=0x7f070002;
+        public static final int SettingName=0x7f070009;
+        public static final int action_memo=0x7f070004;
+        public static final int air_command=0x7f070003;
+        public static final int app_name=0x7f070000;
+        public static final int choose_protector_source=0x7f070010;
+        public static final int enable_screen_protector=0x7f07000c;
+        public static final int enable_screen_protector_info=0x7f07000d;
+        public static final int enable_sound=0x7f07000e;
+        public static final int enable_sound_info=0x7f07000f;
+        public static final int file_selector=0x7f07000a;
+        public static final int pen_window=0x7f070008;
+        public static final int protector=0x7f07000b;
+        public static final int protector_source_info=0x7f070011;
+        public static final int s_finder=0x7f070007;
+        public static final int scrap_booker=0x7f070005;
+        public static final int screen_writer=0x7f070006;
     }
     public static final class style {
         /** 
@@ -94,11 +121,11 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
     public static final class xml {
         public static final int setting_preference=0x7f040000;

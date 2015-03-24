@@ -6,10 +6,18 @@
          <CheckBoxPreference
                 android:key="screen_protect_preference"
                 android:title="@string/enable_screen_protector"
+                android:summary="@string/enable_screen_protector_info"
                 android:persistent="false"/>
          
          <CheckBoxPreference
                 android:key="enable_sound_preference"
                 android:title="@string/enable_sound"
+                android:summary="@string/enable_sound_info"
                 android:persistent="false"/>
+         <Preference
+             	android:key="protector_source_preference"
+                android:title="@string/choose_protector_source"
+                android:summary="@string/protector_source_info"
+                android:persistent="false"/>
+             
 </PreferenceScreen>

@@ -26,4 +26,15 @@
     <string name="screen_writer">图像剪辑</string>
     <string name="s_finder">截屏编写</string>
     <string name="pen_window">笔写窗口</string>
+    
+    <string name="SettingName">ODM 设置</string>
+    <string name="file_selector">文件选择</string>
+    
+    <string name="protector">屏保</string>
+    <string name="enable_screen_protector">启用屏保</string>
+    <string name="enable_screen_protector_info">灭屏时启用屏保代替锁屏</string>
+    <string name="enable_sound">开启屏保声音</string>
+    <string name="enable_sound_info">使用视频作为屏保时播放声音</string>
+    <string name="choose_protector_source">选择屏保</string>
+  	<string name="protector_source_info">选择一张图片或一个视频</string>
 </resources>
