@@ -37,4 +37,11 @@
     <string name="enable_sound_info">使用视频作为屏保时播放声音</string>
     <string name="choose_protector_source">选择屏保</string>
   	<string name="protector_source_info">选择一张图片或一个视频</string>
+  	
+  	<string name="screen_filter">颜色过滤器</string>
+  	<string name="enable_screen_filter">使用颜色过滤</string>
+  	<string name="enable_filter_statusbar">在状态栏显示</string>
+  	<string name="enable_filter_statusbar_info">在状态栏上显示快捷菜单</string> 
+  	<string name="screen_filter_level">颜色过滤程度</string>	
+
 </resources>

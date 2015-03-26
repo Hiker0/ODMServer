@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-        android:title="@string/SettingName">
-		
-         <CheckBoxPreference
-                android:key="screen_protect_preference"
-                android:title="@string/enable_screen_protector"
-                android:summary="@string/enable_screen_protector_info"
-                android:persistent="false"/>
-         
-         <CheckBoxPreference
-                android:key="enable_sound_preference"
-                android:title="@string/enable_sound"
-                android:summary="@string/enable_sound_info"
-                android:persistent="false"/>
-         <Preference
-             	android:key="protector_source_preference"
-                android:title="@string/choose_protector_source"
-                android:summary="@string/protector_source_info"
-                android:persistent="false"/>
-             
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/SettingName" >
+
+    <PreferenceCategory android:title="@string/protector" >
+        <CheckBoxPreference
+            android:key="screen_protect_preference"
+            android:persistent="false"
+            android:summary="@string/enable_screen_protector_info"
+            android:title="@string/enable_screen_protector" />
+        <CheckBoxPreference
+            android:key="enable_sound_preference"
+            android:persistent="false"
+            android:summary="@string/enable_sound_info"
+            android:title="@string/enable_sound" />
+
+        <Preference
+            android:key="protector_source_preference"
+            android:persistent="false"
+            android:summary="@string/protector_source_info"
+            android:title="@string/choose_protector_source" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/screen_filter" >
+        <CheckBoxPreference
+            android:key="screen_filter_preference"
+            android:persistent="false"
+            android:summary="@string/enable_screen_filter"
+            android:title="@string/enable_screen_filter" />
+        <CheckBoxPreference
+            android:key="filter_statusbar_preference"
+            android:persistent="false"
+            android:title="@string/enable_filter_statusbar"
+            android:summary="@string/enable_filter_statusbar_info" />
+        <com.odm.odmserver.util.SeekbarPreference
+            android:key="filter_level_preference"
+            android:persistent="false"
+            android:title="@string/screen_filter_level"
+            >
+            
+        </com.odm.odmserver.util.SeekbarPreference>
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -51,12 +51,15 @@ public final class R {
         public static final int cancel=0x7f090004;
         public static final int circle_layout=0x7f090012;
         public static final int grid_view=0x7f090002;
-        public static final int id_start=0x7f090017;
-        public static final int id_stop=0x7f090018;
+        public static final int id_start=0x7f09001a;
+        public static final int id_stop=0x7f09001b;
         public static final int imgFileIcon=0x7f090005;
         public static final int path=0x7f090001;
         public static final int pen_window=0x7f090010;
         public static final int photo_view=0x7f090016;
+        public static final int preference_content=0x7f090018;
+        public static final int preference_seekbar=0x7f090019;
+        public static final int preference_title=0x7f090017;
         public static final int s_finder=0x7f090011;
         public static final int scrap_booker=0x7f09000e;
         public static final int screen_write=0x7f09000f;
@@ -73,7 +76,8 @@ public final class R {
         public static final int float_menu=0x7f030004;
         public static final int float_menu_note4=0x7f030005;
         public static final int screen_protector_layout=0x7f030006;
-        public static final int start_activity=0x7f030007;
+        public static final int seekbar_preference_layout=0x7f030007;
+        public static final int start_activity=0x7f030008;
     }
     public static final class raw {
         public static final int airbutton_close=0x7f050000;
@@ -87,16 +91,22 @@ public final class R {
         public static final int air_command=0x7f070003;
         public static final int app_name=0x7f070000;
         public static final int choose_protector_source=0x7f070010;
+        public static final int enable_filter_statusbar=0x7f070015;
+        public static final int enable_filter_statusbar_info=0x7f070016;
+        public static final int enable_screen_filter=0x7f070014;
         public static final int enable_screen_protector=0x7f07000c;
         public static final int enable_screen_protector_info=0x7f07000d;
         public static final int enable_sound=0x7f07000e;
         public static final int enable_sound_info=0x7f07000f;
         public static final int file_selector=0x7f07000a;
         public static final int pen_window=0x7f070008;
+        public static final int percent=0x7f070012;
         public static final int protector=0x7f07000b;
         public static final int protector_source_info=0x7f070011;
         public static final int s_finder=0x7f070007;
         public static final int scrap_booker=0x7f070005;
+        public static final int screen_filter=0x7f070013;
+        public static final int screen_filter_level=0x7f070017;
         public static final int screen_writer=0x7f070006;
     }
     public static final class style {

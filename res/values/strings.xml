@@ -21,4 +21,11 @@
     <string name="enable_sound_info">Enable Sound when playing protector video</string>
     <string name="choose_protector_source">Choose protector source</string>
   	<string name="protector_source_info">Select a picture or a video</string>
+  	
+  	<string name="percent">%d%%</string>
+  	<string name="screen_filter">Screen Filter</string>
+  	<string name="enable_screen_filter">Enable screen filter</string>
+  	<string name="enable_filter_statusbar">Display in statusbar</string>
+  	<string name="enable_filter_statusbar_info">Display in statusbar</string> 
+  	<string name="screen_filter_level">Level</string>	
 </resources>
