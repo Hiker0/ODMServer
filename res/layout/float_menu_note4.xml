@@ -5,14 +5,14 @@
 
     <!-- zxf add animation 11/11 start -->
 
-    <com.odm.odmserver.hall.floatmenu.note4.AirAnimationBgView
+    <com.allen.odmserver.hall.floatmenu.note4.AirAnimationBgView
         android:id="@+id/air_animate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <!--  -->        
 
-        <com.odm.odmserver.hall.floatmenu.note4.AirButtonGlobalMenuBgImageView
+        <com.allen.odmserver.hall.floatmenu.note4.AirButtonGlobalMenuBgImageView
             android:id="@+id/air_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,6 +129,6 @@
                 android:textSize="13dp" />
         </LinearLayout>
         </AbsoluteLayout>
-    </com.odm.odmserver.hall.floatmenu.note4.AirAnimationBgView>
+    </com.allen.odmserver.hall.floatmenu.note4.AirAnimationBgView>
 
 </FrameLayout>

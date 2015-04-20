@@ -27,14 +27,28 @@
     <string name="s_finder">截屏编写</string>
     <string name="pen_window">笔写窗口</string>
     
-    <string name="SettingName">ODM 设置</string>
+    <string name="SettingName">SmartTool</string>
     <string name="file_selector">文件选择</string>
+    
+    <string name="enable_ball_menu">使用小球菜单</string>
+    <string name="enable_ball_menu_info">使用小球菜单</string>
+
+    <string name="fan_menu">扇形菜单</string>
+    <string name="enable_fan_menu">使用扇形菜单</string>
+    <string name="enable_fan_menu_info">使用扇形菜单</string>
+    <string name="fanmenu_close">完全退出</string>
+    <string name="fanmenu_close_info">关闭时完全退出，而不是最小化</string>
+    
+    <string name="enable_side_menu">使用侧边菜单</string>
+    <string name="enable_side_menu_info">使用侧边菜单</string>
     
     <string name="protector">屏保</string>
     <string name="enable_screen_protector">启用屏保</string>
     <string name="enable_screen_protector_info">灭屏时启用屏保代替锁屏</string>
     <string name="enable_sound">开启屏保声音</string>
     <string name="enable_sound_info">使用视频作为屏保时播放声音</string>
+    <string name="enable_horizontal">横屏播放</string>
+    <string name="enable_horizontal_info">横屏播放视频或图片</string>     
     <string name="choose_protector_source">选择屏保</string>
   	<string name="protector_source_info">选择一张图片或一个视频</string>
   	

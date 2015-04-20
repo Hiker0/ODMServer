@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.odm.odmserver"
+    package="com.allen.odmserver"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="17"
@@ -19,7 +19,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".OdmServiceSetting"
+            android:name="com.allen.odmserver.OdmServiceSetting"
+            android:label="@string/SettingName" >         
+        </activity>
+
+        <activity
+            android:name="com.allen.odmserver.WelcomeActivity"
+            android:excludeFromRecents="true"
             android:label="@string/SettingName" >
               <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +34,8 @@
             </intent-filter>          
         </activity>
 
-
         <receiver
-            android:name="com.odm.odmserver.BootReceiver"
+            android:name="com.allen.odmserver.BootReceiver"
 
             >
             <intent-filter>
@@ -41,12 +46,27 @@
         </receiver>
         
 		<service
-		     android:name="com.odm.odmserver.OdmService"
-		     android:label="@string/app_name" >
+		     android:name="com.allen.odmserver.OdmService"
+		     android:label="@string/app_name"
+		     android:persistent="true" >
 		
 		</service>
+		
 		<activity
-		     android:name=".ScreenProtector.ProtectorActivity"
+		     android:name="com.allen.odmserver.ScreenProtector.ProtectorHorizontalActivity"
+		     android:showOnLockScreen="true"
+		     android:screenOrientation="landscape"
+		     android:label="@string/app_name" >
+ 
+		    <intent-filter>
+                <action android:name="android.intent.action.PROTECTOR_HORIZONTAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter> 
+		</activity>
+		
+		<activity
+		     android:name="com.allen.odmserver.ScreenProtector.ProtectorActivity"
 		     android:showOnLockScreen="true"
 		     android:screenOrientation="portrait"
 		     android:label="@string/app_name" >

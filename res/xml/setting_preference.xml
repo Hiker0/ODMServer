@@ -2,8 +2,37 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/SettingName" >
-
-    <PreferenceCategory android:title="@string/protector" >
+	
+    <CheckBoxPreference
+         android:key="enable_ballmenu_preference"
+         android:persistent="false"
+         android:summary="@string/enable_ball_menu"
+         android:title="@string/enable_ball_menu_info" />
+   <CheckBoxPreference
+         android:key="enable_sidemenu_preference"
+         android:persistent="false"
+         android:summary="@string/enable_side_menu"
+         android:title="@string/enable_side_menu_info" />
+   	    <CheckBoxPreference
+	         android:key="enable_fanmenu_preference"
+	         android:persistent="false"
+	         android:summary="@string/enable_fan_menu"
+	         android:title="@string/enable_fan_menu_info" />
+   	    <!--  
+    <PreferenceCategory 
+        android:title="@string/fan_menu"
+        android:key="fan_menu_category" >
+	    <CheckBoxPreference
+	         android:key="fanmenu_close_preference"
+	         android:persistent="false"
+	         android:summary="@string/fanmenu_close"
+	         android:title="@string/fanmenu_close_info" />         
+    </PreferenceCategory>
+    -->
+        
+    <PreferenceCategory 
+        android:title="@string/protector"
+        android:key="protector_category" >
         <CheckBoxPreference
             android:key="screen_protect_preference"
             android:persistent="false"
@@ -14,14 +43,21 @@
             android:persistent="false"
             android:summary="@string/enable_sound_info"
             android:title="@string/enable_sound" />
-
+        <CheckBoxPreference
+            android:key="protector_horizontal_preference"
+            android:persistent="false"
+            android:summary="@string/enable_horizontal_info"
+            android:title="@string/enable_horizontal" />
+        
         <Preference
             android:key="protector_source_preference"
             android:persistent="false"
             android:summary="@string/protector_source_info"
             android:title="@string/choose_protector_source" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/screen_filter" >
+    <PreferenceCategory 
+        android:title="@string/screen_filter" 
+        android:key="filter_category" >>
         <CheckBoxPreference
             android:key="screen_filter_preference"
             android:persistent="false"
@@ -32,13 +68,13 @@
             android:persistent="false"
             android:title="@string/enable_filter_statusbar"
             android:summary="@string/enable_filter_statusbar_info" />
-        <com.odm.odmserver.util.SeekbarPreference
+        <com.allen.odmserver.util.SeekbarPreference
             android:key="filter_level_preference"
             android:persistent="false"
             android:title="@string/screen_filter_level"
             >
             
-        </com.odm.odmserver.util.SeekbarPreference>
+        </com.allen.odmserver.util.SeekbarPreference>
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -11,14 +11,29 @@
     <string name="s_finder">Screen write</string>
     <string name="pen_window">Pen Window</string>
     
-    <string name="SettingName">ODM Settings</string>
+    <string name="SettingName">SmartTool</string>
     <string name="file_selector">File selector</string>
      
+    
+    <string name="enable_ball_menu">Enable ball menu</string>
+    <string name="enable_ball_menu_info">Enable ball menu</string>
+    
+ 	<string name="fan_menu">Fan menu</string>
+    <string name="enable_fan_menu">Enable fan menu</string>
+    <string name="enable_fan_menu_info">Enable fan menu</string>
+    <string name="fanmenu_close">Wholly closed</string>
+    <string name="fanmenu_close_info">Invisibale when closed</string>
+    
+    <string name="enable_side_menu">Enable side menu</string>
+    <string name="enable_side_menu_info">Enable side menu</string>
+       
     <string name="protector">Screen Protector</string>
     <string name="enable_screen_protector">Enable screen protector</string>
     <string name="enable_screen_protector_info">Enable screen protector when keyguard locked</string>
     <string name="enable_sound">Enable Sound</string>
     <string name="enable_sound_info">Enable Sound when playing protector video</string>
+    <string name="enable_horizontal">Force Horizontal</string>
+    <string name="enable_horizontal_info">Force Horizontal when playing protector</string>    
     <string name="choose_protector_source">Choose protector source</string>
   	<string name="protector_source_info">Select a picture or a video</string>
   	
